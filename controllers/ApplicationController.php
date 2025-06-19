@@ -33,28 +33,11 @@ class ApplicationController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id); // Loads existing model
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            // Redirect after successful update
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        $model = new Application();
 
         // Render the update form with existing data
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     * Finds the Application model by ID.
-     */
-    protected function findModel($id)
-    {
-        if (($model = Application::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested application does not exist.');
     }
 }
